@@ -5,7 +5,6 @@ import renderer.*;
 
 import java.awt.*;
 import java.io.File;
-import java.util.Locale;
 
 public class MainRenderer extends Renderer {
 
