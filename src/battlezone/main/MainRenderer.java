@@ -13,10 +13,7 @@ public class MainRenderer extends Renderer {
     String classPath = getClass().getResource("").getPath() + "/torus.model";
     public MainRenderer(Vector2 vector2, Camera camera) {
         super(vector2, camera);
-
         triangles = new Triangles();
-        model = LoadModel.loadModel(new File(classPath), Color.red, this, camera);
-        model.init(triangles);
     }
 
     public void render(Graphics2D graphics2D) {
