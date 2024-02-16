@@ -3,7 +3,6 @@ package battlezone.main;
 import maths.Vector2;
 import renderer.Camera;
 import renderer.Window;
-import util.Console;
 import renderer.Renderer;
 import engine.Engine;
 import java.util.Locale;
