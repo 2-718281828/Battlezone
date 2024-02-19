@@ -19,7 +19,7 @@ public class MainLogic implements Logic {
         this.camera = camera;
         entityHandler = new EntityHandler();
         entityHandler.entities.add(new Enemy1(LoadModel.loadModel(
-                new File(classPath + "/torus.model"), new Color(0,255,0), camera.renderer, camera),new Vector3(2,0,0), entityHandler));//model, położenie, entityHandler
+                new File(classPath + "/tank.model"), new Color(0,255,0), camera.renderer, camera),new Vector3(2,0,0), entityHandler));//model, położenie, entityHandler
         for (int i = 0; i < entityHandler.entities.size(); i++) {
             entityHandler.entities.get(i).model.init(((MainRenderer)camera.renderer).triangles);
         } // inicjalizacja wszystkich modelow
