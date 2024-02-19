@@ -18,7 +18,8 @@ public class Main {
     renderer.addKeyListener(camera);                                                   //uruchamia słuchacze
     renderer.addMouseMotionListener(camera);
     renderer.requestFocus();
-    camera.enableRotationPitch = false; // wylaczenie rotacji w pionie
+    camera.enableRotationPitch = true; // wylaczenie rotacji w pionie
+    camera.enableRotationYaw = true; // wylaczenie rotacji w pionie
     MainLogic mainLogic = new MainLogic(camera);                                       //wspomaga kamere
     Engine engine = new Engine(renderer, mainLogic);                                   //obsługuje silnik
     engine.start();
