@@ -19,6 +19,7 @@ public class Main {
     renderer.addMouseMotionListener(camera);
     renderer.requestFocus();
     camera.enableRotationPitch = false; // wylaczenie rotacji w pionie
+	camera.enableUpDown = false; // wylaczenie poruszania sie gora/dol
     MainLogic mainLogic = new MainLogic(camera);                                       //wspomaga kamere
     Engine engine = new Engine(renderer, mainLogic);                                   //obsługuje silnik
     engine.start();
