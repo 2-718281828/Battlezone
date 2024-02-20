@@ -20,8 +20,6 @@ public class MainLogic implements Logic {
         entityHandler = new EntityHandler();
         entityHandler.entities.add(new Enemy1(LoadModel.loadModel(
                 new File(classPath + "/tank.model"), new Color(0,255,0), camera.renderer, camera),new Vector3(0,0,0), entityHandler));//model, położenie, entityHandler
-        entityHandler.entities.add(new Point(LoadModel.loadModel(
-                new File(classPath + "/cube.model"), Color.white, camera.renderer, camera),new Vector3(0,0,0), entityHandler));
 
         for (int i = 0; i < entityHandler.entities.size(); i++) {
 		if (((Enemy1)entityHandler.entities.get(i)).id == ID.Enemy1) {
