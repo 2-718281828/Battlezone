@@ -1,5 +1,5 @@
 package battlezone.entity;
 
 public enum ID {
-    Enemy1, Point
+    Enemy1, Point, Enemy2
 }
