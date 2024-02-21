@@ -34,7 +34,8 @@ public class Enemy2 extends Entity {
         model.move(velocity);
         if ((position.x-camera.position.x)*(position.x-camera.position.x)+(position.z-camera.position.z)*(position.z-camera.position.z)<25){ //to "25" to odległość od gracza ^2
             //określa odległość Enemy2 od gracza, dzieli logikę na części "walka z graczem" i "jazda losowa"
-
+            velocity.x = 0;
+            velocity.z =0;
         }
         else {
             velocity.x = speed * Math.cos(beta);
