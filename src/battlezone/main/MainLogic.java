@@ -23,7 +23,7 @@ public class MainLogic implements Logic {
         this.camera = camera;
         entityHandler = new EntityHandler();
         entityHandler.entities.add(new Enemy1(LoadModel.loadModel(new File(classPath + "/pocisk.model"), Color.black, camera.renderer, camera),new Vector3(0,-0.5,0), entityHandler, camera));//model, położenie, entityHandler
-        entityHandler.entities.add(new Enemy2(LoadModel.loadModel(new File(classPath + "/tank.model"), Color.green, camera.renderer, camera),new Vector3(0,-1,0), entityHandler));//model, położenie, entityHandler
+        entityHandler.entities.add(new Enemy2(LoadModel.loadModel(new File(classPath + "/tank.model"), Color.green, camera.renderer, camera),new Vector3(0,-1,0), entityHandler, camera));//model, położenie, entityHandler
         entityHandler.entities.add(new Point(LoadModel.loadModel(new File(classPath + "/cube.model"), Color.BLUE , camera.renderer, camera),new Vector3(1,0,0), entityHandler));//model, położenie, entityHandler
         space = new KeyHandler();
         camera.renderer.addKeyListener(space);
