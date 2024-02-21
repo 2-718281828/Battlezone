@@ -10,7 +10,7 @@ import java.util.Random;
 public class Enemy2 extends Entity {
     public ID id = ID.Enemy2;
     double t = 0;
-    double speed = 0.01; //ustalamy domyślną prędkość obiektu
+    double speed = 0.03; //ustalamy domyślną prędkość obiektu
     double alfa=0; //kąt względem którego obiekt porusza sie wzgłedem osi x
     double beta=0; //kąt względem którego obiekt porusza sie wzgłedem osi x
     public Enemy2(Model model, Vector3 position, EntityHandler entityHandler) {
