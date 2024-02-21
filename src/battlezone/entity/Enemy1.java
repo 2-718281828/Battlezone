@@ -17,7 +17,7 @@ public class Enemy1 extends Entity {
     public ID id = ID.Enemy1;
     double lifetime = 0;
     boolean life = false;
-    double speed = 0.1; //ustalamy domyślną prędkość obiektu
+    double speed = 1; //ustalamy domyślną prędkość obiektu
     Camera camera;
     public Enemy1(Model model, Vector3 position, EntityHandler entityHandler, Camera camera) {
         super(model, position, entityHandler);

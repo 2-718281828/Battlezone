@@ -43,7 +43,7 @@ public class MainLogic implements Logic {
         }
         if (space.spacePressed && !reload){
             reload = true;
-            Enemy1 pocisk = new Enemy1(LoadModel.loadModel(new File(classPath + "/pocisk.model"), new Color(0,255,0), camera.renderer, camera),new Vector3(camera.position.x, camera.position.y-0.5, camera.position.z), entityHandler, camera);//model, położenie, entityHandler
+            Enemy1 pocisk = new Enemy1(LoadModel.loadModel(new File(classPath + "/pocisk.model"), Color.red, camera.renderer, camera),new Vector3(camera.position.x, camera.position.y-0.5, camera.position.z), entityHandler, camera);//model, położenie, entityHandler
             entityHandler.entities.add(pocisk);
             pocisk.model.init(((MainRenderer)camera.renderer).triangles);
         }
