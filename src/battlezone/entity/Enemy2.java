@@ -36,20 +36,10 @@ public class Enemy2 extends Entity {
         time++;
         position.add(velocity);
         model.move(velocity);
-//        Vector3 dst = new Vector3(position.x - camera.position.x, 0, position.z-camera.position.z);
-//	    if (dst.magnitude() < 9){ //to "25" to odległość od gracza ^2
-//            //określa odległość Enemy2 od gracza, dzieli logikę na części "walka z graczem" i "jazda losowa"
-//	        delta=beta;
-//            model.rotate(1, -delta);
-//	        delta = Math.atan2(dst.z, dst.x);
-//            model.rotate(1, delta);
-//        }
-//        else{
-//
-//            }
-//
-//	    }
-        if (time / 60 >= 5) {
+        if ((camera.position.x-position.x)*(camera.position.x-position.x)+(camera.position.z-position.z)*(camera.position.z-position.z)<36){
+            alfa=Math.PI+Math.asin((camera.position.x-position.x)/(camera.position.z-position.z));
+        }
+        else if(time / 60 >= 5) {
             alfa = random.nextDouble(0.25 * Math.PI);
             time = 0;
         }
@@ -58,8 +48,8 @@ public class Enemy2 extends Entity {
             beta = alfa;
             delta-=beta;
         }
-        velocity.x = Math.cos(delta) * speed;
-        velocity.z = Math.sin(delta) * speed;
+        velocity.x = Math.cos(alfa) * speed;
+        velocity.z = Math.sin(alfa) * speed;
         }
     }
 
