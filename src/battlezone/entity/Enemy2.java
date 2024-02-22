@@ -17,7 +17,8 @@ public class Enemy2 extends Entity {
     Camera camera;
     double speed = 0.03; //ustalamy domyślną prędkość obiektu
     double alfa=0; //kąt względem którego obiekt porusza sie wzgłedem osi x
-    double beta=0; //kąt względem którego obiekt porusza sie wzgłedem osi x
+    double delta=0;
+    double beta=alfa; //kąt względem którego obiekt porusza sie wzgłedem osi x
     public Enemy2(Model model, Vector3 position, EntityHandler entityHandler, Camera camera) {
         super(model, position, entityHandler);
         velocity = new Vector3(0, 0, 0);
@@ -27,25 +28,23 @@ public class Enemy2 extends Entity {
 
     }
     Random random = new Random();
-    double time = System.currentTimeMillis()/1000d;
+    long time = 0;
     public void logic() {
+        time++;
         position.add(velocity);
         model.move(velocity);
-        if ((position.x-camera.position.x)*(position.x-camera.position.x)+(position.z-camera.position.z)*(position.z-camera.position.z)<64){ //to "25" to odległość od gracza ^2
+        if ((position.x-camera.position.x)*(position.x-camera.position.x)+(position.z-camera.position.z)*(position.z-camera.position.z)<1){ //to "25" to odległość od gracza ^2
             //określa odległość Enemy2 od gracza, dzieli logikę na części "walka z graczem" i "jazda losowa"
-
-            velocity.x = 0;
-            velocity.z =0;
         }
-        else {
-            velocity.x = speed * Math.cos(beta);
-            velocity.z = speed * Math.sin(beta);
-            if (System.currentTimeMillis() / 1000d - time >= 5) {
-                alfa = random.nextDouble(0.25*Math.PI);
-                time = System.currentTimeMillis()/1000d;
-                model.rotate(1, -alfa);
-                beta =beta+alfa;
+        else{
+            if (time/60>=5){
+                alfa=random.nextDouble(0.25*Math.PI);
+                model.rotate(1,-alfa);
+                time=0;
+                beta+=alfa;
             }
+            velocity.x=Math.cos(beta)*speed;
+            velocity.z=Math.sin(beta)*speed;
         }
     }
 }
