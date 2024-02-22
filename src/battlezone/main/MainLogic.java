@@ -1,6 +1,6 @@
 package battlezone.main;
 
-import battlezone.entity.Enemy1;
+import battlezone.entity.Pocisk;
 import battlezone.entity.Enemy2;
 import battlezone.entity.Point;
 import engine.Logic;
@@ -22,7 +22,7 @@ public class MainLogic implements Logic {
     public MainLogic(Camera camera){
         this.camera = camera;
         entityHandler = new EntityHandler();
-        entityHandler.entities.add(new Enemy1(LoadModel.loadModel(new File(classPath + "/pocisk.model"), Color.black, camera.renderer, camera),new Vector3(0,-0.5,0), entityHandler, camera));//model, położenie, entityHandler
+        entityHandler.entities.add(new Pocisk(LoadModel.loadModel(new File(classPath + "/pocisk.model"), Color.black, camera.renderer, camera),new Vector3(0,-0.5,0), entityHandler, camera));//model, położenie, entityHandler
         entityHandler.entities.add(new Enemy2(LoadModel.loadModel(new File(classPath + "/tank.model"), Color.green, camera.renderer, camera),new Vector3(0,-1,0), entityHandler, camera));//model, położenie, entityHandler
         entityHandler.entities.add(new Point(LoadModel.loadModel(new File(classPath + "/cube.model"), Color.BLUE , camera.renderer, camera),new Vector3(1,0,0), entityHandler));//model, położenie, entityHandler
         space = new KeyHandler();
@@ -43,7 +43,7 @@ public class MainLogic implements Logic {
         }
         if (space.spacePressed && !reload){
             reload = true;
-            Enemy1 pocisk = new Enemy1(LoadModel.loadModel(new File(classPath + "/pocisk.model"), Color.red, camera.renderer, camera),new Vector3(camera.position.x, camera.position.y-0.5, camera.position.z), entityHandler, camera);//model, położenie, entityHandler
+            Pocisk pocisk = new Pocisk(LoadModel.loadModel(new File(classPath + "/pocisk.model"), Color.red, camera.renderer, camera),new Vector3(camera.position.x, camera.position.y-0.5, camera.position.z), entityHandler, camera);//model, położenie, entityHandler
             entityHandler.entities.add(pocisk);
             pocisk.model.init(((MainRenderer)camera.renderer).triangles);
         }

@@ -27,13 +27,13 @@ public class Enemy2 extends Entity {
 
     }
     Random random = new Random();
-
     double time = System.currentTimeMillis()/1000d;
     public void logic() {
         position.add(velocity);
         model.move(velocity);
-        if ((position.x-camera.position.x)*(position.x-camera.position.x)+(position.z-camera.position.z)*(position.z-camera.position.z)<25){ //to "25" to odległość od gracza ^2
+        if ((position.x-camera.position.x)*(position.x-camera.position.x)+(position.z-camera.position.z)*(position.z-camera.position.z)<49){ //to "25" to odległość od gracza ^2
             //określa odległość Enemy2 od gracza, dzieli logikę na części "walka z graczem" i "jazda losowa"
+
             velocity.x = 0;
             velocity.z =0;
         }
