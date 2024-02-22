@@ -1,25 +1,19 @@
 package battlezone.entity;
 
-import battlezone.main.KeyHandler;
 import battlezone.main.MainRenderer;
-import com.sun.source.doctree.AttributeTree;
 import entity.Entity;
 import entity.EntityHandler;
 import maths.Vector3;
 import renderer.Camera;
 import renderer.Model;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.util.Random;
-
-public class Enemy1 extends Entity {
-    public ID id = ID.Enemy1;
+public class Pocisk extends Entity {
+    public ID id = ID.Pocisk;
     double lifetime = 0;
     boolean life = false;
     double speed = 1; //ustalamy domyślną prędkość obiektu
     Camera camera;
-    public Enemy1(Model model, Vector3 position, EntityHandler entityHandler, Camera camera) {
+    public Pocisk(Model model, Vector3 position, EntityHandler entityHandler, Camera camera) {
         super(model, position, entityHandler);
         //model.rotate(1, 0.5*Math.PI);
         this.camera = camera;
