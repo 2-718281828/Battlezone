@@ -40,16 +40,16 @@ public class Enemy2 extends Entity {
             alfa=Math.PI+Math.asin((camera.position.x-position.x)/(camera.position.z-position.z));
         }
         else if(time / 60 >= 5) {
-            alfa = random.nextDouble(0.25 * Math.PI);
+            delta+= random.nextDouble(0.25 * Math.PI);
             time = 0;
+            alfa=delta%(Math.PI*2);
         }
         if (alfa != beta) {
-            model.rotate(1, -alfa);
+            model.rotate(1, beta-alfa);
             beta = alfa;
-            delta-=beta;
         }
-        velocity.x = Math.cos(alfa) * speed;
-        velocity.z = Math.sin(alfa) * speed;
+        velocity.x = Math.cos(beta) * speed;
+        velocity.z = Math.sin(beta) * speed;
         }
     }
 
