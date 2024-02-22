@@ -36,7 +36,8 @@ public class Enemy2 extends Entity {
         time++;
         position.add(velocity);
         model.move(velocity);
-        if ((camera.position.x-position.x)*(camera.position.x-position.x)+(camera.position.z-position.z)*(camera.position.z-position.z)<36){
+        //()*(camera.position.x-position.x)+(camera.position.z-position.z)*(camera.position.z-position.z)
+        if (Math.pow(camera.position.x-position.x, 2)+Math.pow(camera.position.z-position.z, 2)<36){
             alfa=Math.PI+Math.asin((camera.position.x-position.x)/(camera.position.z-position.z));
         }
         else if(time / 60 >= 5) {
