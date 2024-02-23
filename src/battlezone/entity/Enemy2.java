@@ -31,14 +31,16 @@ public class Enemy2 extends Entity {
 
     Random random = new Random();
     long time = 0;
+    double a;
 
     public void logic() {
         time++;
         position.add(velocity);
         model.move(velocity);
-        //()*(camera.position.x-position.x)+(camera.position.z-position.z)*(camera.position.z-position.z)
-        if (Math.pow(camera.position.x-position.x, 2)+Math.pow(camera.position.z-position.z, 2)<36){
-            alfa=Math.PI+Math.asin((camera.position.x-position.x)/(camera.position.z-position.z));
+        if ((Math.pow(camera.position.x-position.x, 2)/10+Math.pow(camera.position.z-position.z, 2)/10)<81){
+            a = Math.sqrt(Math.pow(camera.position.x-position.x, 2)+Math.pow(camera.position.z-position.z, 2));
+            alfa=Math.PI+Math.asin((Math.abs(camera.position.z-position.z)/a));
+            System.out.println("Działa");
         }
         else if(time / 60 >= 5) {
             delta+= random.nextDouble(0.25 * Math.PI);
