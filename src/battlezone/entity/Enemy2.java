@@ -8,6 +8,7 @@ import maths.Vector3;
 import renderer.Camera;
 import renderer.Model;
 import renderer.Renderer;
+import util.Console;
 
 import java.util.Random;
 
@@ -31,21 +32,45 @@ public class Enemy2 extends Entity {
 
     Random random = new Random();
     long time = 0;
-    double a;
+    long time2=0;
 
     public void logic() {
         time++;
+        time2++;
         position.add(velocity);
         model.move(velocity);
-        if ((Math.pow(camera.position.x-position.x, 2)/10+Math.pow(camera.position.z-position.z, 2)/10)<81){
-            a = Math.sqrt(Math.pow(camera.position.x-position.x, 2)+Math.pow(camera.position.z-position.z, 2));
-            alfa=Math.PI+Math.asin((Math.abs(camera.position.z-position.z)/a));
-            System.out.println("Działa");
+        if ((Math.pow(camera.position.x-position.x, 2)+Math.pow(camera.position.z-position.z, 2)<144)&&(time2>=180)){
+                if (camera.position.z>=position.z){
+                    if (camera.position.x>=position.x){
+                        alfa = -Math.atan(Math.abs(camera.position.x-position.x)/(camera.position.z-position.z));
+                        Console.log("Case 1");
+                    }
+                    else {
+                        alfa = -180 + Math.atan(Math.abs(camera.position.x-position.x)/(camera.position.z-position.z));
+                        Console.log("Case 2");
+                    }
+                }
+                else{
+                    if (camera.position.x>=position.x){
+                        alfa = Math.atan(Math.abs(camera.position.x-position.x)/(camera.position.z-position.z));
+                        Console.log("Case 3");
+                    }
+                    else {
+                        alfa =180 -  Math.atan(Math.abs(camera.position.x-position.x)/(camera.position.z-position.z));
+                        Console.log("Case 4");
+                    }
+                }
+                System.out.println("Działa");
+                time2=0;
+                time=0;
         }
-        else if(time / 60 >= 5) {
-            delta+= random.nextDouble(0.25 * Math.PI);
-            time = 0;
-            alfa=delta%(Math.PI*2);
+        else {
+            if(time / 60 >= 5) {
+                delta+= random.nextDouble(0.25 * Math.PI);
+                time = 0;
+                alfa=delta%(Math.PI*2);
+                Console.log("nie działa");
+            }
         }
         if (alfa != beta) {
             model.rotate(1, beta-alfa);
