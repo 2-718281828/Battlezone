@@ -17,9 +17,8 @@ public class Enemy2 extends Entity {
     double t = 0;
     Camera camera;
     double speed = 0.03; //ustalamy domyślną prędkość obiektu
-    double alfa = 0; //kąt względem którego obiekt porusza sie wzgłedem osi x
-    double delta = 0;
-    double beta = alfa; //kąt względem którego obiekt porusza sie wzgłedem osi x
+    double alfa = 0; // kąt pod jakim poruszał się obiekt 
+    double beta = alfa; //kąt pod jakim porusza się obiekt
 
     public Enemy2(Model model, Vector3 position, EntityHandler entityHandler, Camera camera) {
         super(model, position, entityHandler);
@@ -32,52 +31,41 @@ public class Enemy2 extends Entity {
 
     Random random = new Random();
     long time = 0;
-    long time2=0;
 
     public void logic() {
         time++;
-        time2++;
+	// przemiesczanie
         position.add(velocity);
         model.move(velocity);
-        if ((Math.pow(camera.position.x-position.x, 2)+Math.pow(camera.position.z-position.z, 2)<144)&&(time2>=180)){
-                if (camera.position.z>=position.z){
-                    if (camera.position.x>=position.x){
-                        alfa = -Math.atan(Math.abs(camera.position.x-position.x)/(camera.position.z-position.z));
-                        Console.log("Case 1");
-                    }
-                    else {
-                        alfa = -180 + Math.atan(Math.abs(camera.position.x-position.x)/(camera.position.z-position.z));
-                        Console.log("Case 2");
-                    }
-                }
-                else{
-                    if (camera.position.x>=position.x){
-                        alfa = Math.atan(Math.abs(camera.position.x-position.x)/(camera.position.z-position.z));
-                        Console.log("Case 3");
-                    }
-                    else {
-                        alfa =180 -  Math.atan(Math.abs(camera.position.x-position.x)/(camera.position.z-position.z));
-                        Console.log("Case 4");
-                    }
-                }
-                System.out.println("Działa");
-                time2=0;
-                time=0;
+	// odległość do kamery
+	Vector3 dst = new Vector3(camera.position);
+	dst.subtract(position);
+	dst.y = 0;
+        if (dst.magnitude() < 15 && dst.magnitude() >= 7){ // zbliża się do gracza
+		velocity.x = (dst.x/dst.magnitude())*speed;	
+		velocity.z = (dst.z/dst.magnitude())*speed; // dzielimy przez wartość wektora aby otrzymać składową wektora jednostkowego skierowanego w stronę kamery a następnie mnożymy tę składową razy prędkość
+		model.rotate(1, -beta); // obracamy obiekt tak, aby był obrócony domyślnie
+		beta = -Math.atan2(dst.z, dst.x); // kąt pod jakim ma się poruszać czołg aby szedł do kamery
+		model.rotate(1, beta); // obracamy obiekt o ten nowy kąt 
         }
+	else if (dst.magnitude() < 7) { // stoi w miejscu i celuje w gracza
+		velocity.x = 0;
+		velocity.z = 0;
+		// obliczamy kąt i zwracamy czołg w stronę gracza
+		model.rotate(1, -beta);
+		beta = -Math.atan2(dst.z, dst.x);
+		model.rotate(1, beta);
+	}
         else {
             if(time / 60 >= 5) {
-                delta+= random.nextDouble(0.25 * Math.PI);
-                time = 0;
-                alfa=delta%(Math.PI*2);
-                Console.log("nie działa");
+		alfa = beta; // rejestrujemy poprzednią wartość kąta 
+                time = 0; // resetujemy czas
+		beta += Math.PI/4-random.nextDouble(Math.PI/2); // dodajemy do bety losowy kąt między -pi/4 a pi/4
+		model.rotate(1, beta-alfa); // obracamy czołg o zmianę kąta
             }
-        }
-        if (alfa != beta) {
-            model.rotate(1, beta-alfa);
-            beta = alfa;
-        }
-        velocity.x = Math.cos(beta) * speed;
-        velocity.z = Math.sin(beta) * speed;
+	    velocity.x = Math.cos(beta) * speed;
+	    velocity.z = Math.sin(beta) * speed;
+	    // ustalamy prędkośc obiektów na podstawie kątów
         }
     }
-
+}
