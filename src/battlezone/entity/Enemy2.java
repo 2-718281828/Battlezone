@@ -19,16 +19,16 @@ public class Enemy2 extends Entity {
     double speed = 0.03; //ustalamy domyślną prędkość obiektu
     double alfa = 0; // kąt pod jakim poruszał się obiekt 
     double beta = alfa; //kąt pod jakim porusza się obiekt
-    public static Vector3 position;
+
     public Enemy2(Model model, Vector3 position, EntityHandler entityHandler, Camera camera) {
         super(model, position, entityHandler);
         velocity = new Vector3(0, 0, 0);
-        this.position=position;
         model.rotate(1, -alfa);
         model.scale(0.2);
         this.camera = camera;
 
     }
+
     Random random = new Random();
     long time = 0;
     public static boolean fire=false;          //polece jeśli true to strzelaj
