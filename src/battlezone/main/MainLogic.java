@@ -1,6 +1,7 @@
 package battlezone.main;
 
-import battlezone.entity.*;
+import battlezone.entity.Pocisk;
+import battlezone.entity.Enemy2;
 import battlezone.entity.Point;
 import engine.Logic;
 import entity.EntityHandler;
@@ -9,6 +10,7 @@ import renderer.Camera;
 import renderer.LoadModel;
 import java.awt.*;
 import java.io.File;
+import battlezone.entity.ID;
 
 public class MainLogic implements Logic {
 
@@ -24,7 +26,6 @@ public class MainLogic implements Logic {
         entityHandler.entities.add(new Enemy2(LoadModel.loadModel(new File(classPath + "/tank.model"), Color.green, camera.renderer, camera),new Vector3(0,0,25), entityHandler, camera));//model, położenie, entityHandler
         entityHandler.entities.add(new Point(LoadModel.loadModel(new File(classPath + "/cube.model"), Color.BLUE , camera.renderer, camera),new Vector3(0,0,0), entityHandler));//model, położenie, entityHandler
         entityHandler.entities.add(new Point(LoadModel.loadModel(new File(classPath + "/cube.model"), Color.BLUE , camera.renderer, camera),new Vector3(0,0,10), entityHandler));//model, położenie, entityHandler
-        entityHandler.entities.add(new Pocisk2(LoadModel.loadModel(new File(classPath + "/pocisk.model"), Color.orange , camera.renderer, camera),new Vector3(0,0,10), entityHandler, camera));//model, położenie, entityHandler
         space = new KeyHandler();
         camera.renderer.addKeyListener(space);
         for (int i = 0; i < entityHandler.entities.size(); i++) {
@@ -47,11 +48,5 @@ public class MainLogic implements Logic {
             entityHandler.entities.add(pocisk);
             pocisk.model.init(((MainRenderer)camera.renderer).triangles);
         }
-        if (Enemy2.fire){
-            Pocisk2 pocisk2 = new Pocisk2(LoadModel.loadModel(new File(classPath + "/pocisk.model"), Color.orange , camera.renderer, camera),new Vector3(0,0,10), entityHandler, camera);
-            entityHandler.entities.add(pocisk2);
-            pocisk2.model.init(((MainRenderer)camera.renderer).triangles);
-        }
-
     }
 }

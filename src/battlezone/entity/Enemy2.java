@@ -31,13 +31,9 @@ public class Enemy2 extends Entity {
 
     Random random = new Random();
     long time = 0;
-    public static boolean fire=false;          //polece jeśli true to strzelaj
-    long fireTime = 0;                            //przeładowanie
+
     public void logic() {
         time++;
-        if (fireTime>0){
-            fireTime--;
-        }
 	// przemiesczanie
         position.add(velocity);
         model.move(velocity);
@@ -59,20 +55,13 @@ public class Enemy2 extends Entity {
 		model.rotate(1, -beta);
 		beta = -Math.atan2(dst.z, dst.x);
 		model.rotate(1, beta);
-        if (fireTime==0){
-            fire = true;
-            fireTime = 300;    //czas przeładowania w sekundach razy 60
-        }
-        else{
-            fire = false;
-        }
 	}
         else {
             if(time / 60 >= 5) {
-		        alfa = beta; // rejestrujemy poprzednią wartość kąta
+		alfa = beta; // rejestrujemy poprzednią wartość kąta 
                 time = 0; // resetujemy czas
-		        beta += Math.PI/4-random.nextDouble(Math.PI/2); // dodajemy do bety losowy kąt między -pi/4 a pi/4
-		        model.rotate(1, beta-alfa); // obracamy czołg o zmianę kąta
+		beta += Math.PI/4-random.nextDouble(Math.PI/2); // dodajemy do bety losowy kąt między -pi/4 a pi/4
+		model.rotate(1, beta-alfa); // obracamy czołg o zmianę kąta
             }
 	    velocity.x = Math.cos(-beta) * speed;
 	    velocity.z = Math.sin(-beta) * speed;
