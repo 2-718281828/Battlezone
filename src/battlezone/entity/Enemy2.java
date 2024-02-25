@@ -17,8 +17,8 @@ public class Enemy2 extends Entity {
     double t = 0;
     Camera camera;
     double speed = 0.03; //ustalamy domyślną prędkość obiektu
-    static double alfa = 0; // kąt pod jakim poruszał się obiekt
-    static double beta = alfa; //kąt pod jakim porusza się obiekt
+    double alfa = 0; // kąt pod jakim poruszał się obiekt 
+    double beta = alfa; //kąt pod jakim porusza się obiekt
     public static Vector3 position;
     public Enemy2(Model model, Vector3 position, EntityHandler entityHandler, Camera camera) {
         super(model, position, entityHandler);
