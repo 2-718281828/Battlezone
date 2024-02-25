@@ -15,6 +15,7 @@ public class Pocisk extends Entity {
     Camera camera;
     public Pocisk(Model model, Vector3 position, EntityHandler entityHandler, Camera camera) {
         super(model, position, entityHandler);
+        //model.rotate(1, 0.5*Math.PI);
         this.camera = camera;
         velocity = new Vector3(Math.sin(-camera.rotation.x)*speed, 0, Math.cos(-camera.rotation.x)*speed);
         model.rotate(1, -camera.rotation.x);
