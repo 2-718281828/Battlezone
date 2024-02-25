@@ -10,7 +10,7 @@ import renderer.Model;
 public class Pocisk2 extends Entity {
     public ID id = ID.Pocisk2;
     double lifetime = 0;
-    static double speed = 1; //ustalamy domyślną prędkość obiektu
+    static double speed = 0.01; //ustalamy domyślną prędkość obiektu
 	Camera camera;
     public Pocisk2(Model model, Vector3 position, EntityHandler entityHandler, Vector3 velocity, Camera camera) {
         super(model, position, entityHandler);
