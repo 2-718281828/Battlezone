@@ -11,14 +11,16 @@ public class Pocisk2 extends Entity{
     double lifetime = 0;
     boolean life = false;
     double speed = 0.1; //ustalamy domyślną prędkość obiektu
-    Camera camera;Enemy2 enemy;
+    Camera camera;
+    Enemy2 enemy;
     public Pocisk2(Model model, Vector3 position, EntityHandler entityHandler, Camera camera) {
         super(model, position, entityHandler);
         this.camera = camera;
-        model.move(Enemy2.position);
-//miejsce na celowanie na bazie linijek 19 i 20
-        velocity.z = (Math.sin(camera.position.z-position.z)-Math.PI)*speed;
-        velocity.x = (Math.cos(camera.position.x-position.x)-Math.PI)*speed;
+        Vector3 dst = new Vector3(camera.position);
+        dst.subtract(position);
+        dst.y = 0;
+        velocity.x = (dst.x/dst.magnitude())*speed;
+        velocity.z = (dst.z/dst.magnitude())*speed;
     }
 
     public void logic() {
