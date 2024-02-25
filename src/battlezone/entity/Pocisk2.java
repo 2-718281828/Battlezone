@@ -15,6 +15,7 @@ public class Pocisk2 extends Entity{
     public Pocisk2(Model model, Vector3 position, EntityHandler entityHandler, Camera camera) {
         super(model, position, entityHandler);
         this.camera = camera;
+        model.move(Enemy2.position);
 //miejsce na celowanie na bazie linijek 19 i 20
         velocity = new Vector3(Math.sin(-camera.rotation.x)*speed, 0, Math.cos(-camera.rotation.x)*speed);
         model.rotate(1, -camera.rotation.x);
