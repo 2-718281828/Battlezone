@@ -33,6 +33,7 @@ public class MainLogic implements Logic {
     }
     boolean reload = false;
     public void update() {
+
         camera.update(); // aktualizacja kamery
         entityHandler.logic(); // logika wszystkich obiektow
         if (reload)
@@ -48,7 +49,7 @@ public class MainLogic implements Logic {
             pocisk.model.init(((MainRenderer)camera.renderer).triangles);
         }
         if (Enemy2.fire){
-            Pocisk2 pocisk2 = new Pocisk2(LoadModel.loadModel(new File(classPath + "/pocisk.model"), Color.orange , camera.renderer, camera),new Vector3(0,0,10), entityHandler, camera);
+            Pocisk2 pocisk2 = new Pocisk2(LoadModel.loadModel(new File(classPath + "/pocisk.model"), Color.orange , camera.renderer, camera), Enemy2.position, entityHandler, camera);
             entityHandler.entities.add(pocisk2);
             pocisk2.model.init(((MainRenderer)camera.renderer).triangles);
         }
