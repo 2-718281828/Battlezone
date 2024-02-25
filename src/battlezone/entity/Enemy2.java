@@ -63,8 +63,8 @@ public class Enemy2 extends Entity {
 		beta += Math.PI/4-random.nextDouble(Math.PI/2); // dodajemy do bety losowy kąt między -pi/4 a pi/4
 		model.rotate(1, beta-alfa); // obracamy czołg o zmianę kąta
             }
-	    velocity.x = Math.cos(beta) * speed;
-	    velocity.z = Math.sin(beta) * speed;
+	    velocity.x = Math.cos(-beta) * speed;
+	    velocity.z = Math.sin(-beta) * speed;
 	    // ustalamy prędkośc obiektów na podstawie kątów
         }
     }
