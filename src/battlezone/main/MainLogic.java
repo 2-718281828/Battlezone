@@ -27,7 +27,7 @@ public class MainLogic implements Logic {
     int spawnedSTanks = 0;
     int maxspawnedTanks = 3;          //maksymalna ilość działających czołgów
     int maxspawnedSTanks = 1;        //liczba ujemna sprawi że super czołgi będą sie spawnić potem
-    long tankTime = 0;                   //czas od ostatniego spawnu
+    long tankTime = 600;                   //losowy czas spawnu
     long sTankTime = 1200 + random.nextLong(600);
 
 
