@@ -5,12 +5,15 @@ import renderer.Camera;
 import renderer.Window;
 import renderer.Renderer;
 import engine.Engine;
+import util.Console;
+
 import java.util.Locale;
 
 public class Main {
   public static final int WIDTH=1280, HEIGHT=720;                                     //deklaruje rozmiary okna w pikselach
   public static final String TITLE = "Battlezone";                                     //deklaruje nazwe okna
   public static void main(String[] args) {
+    Console.log("Działą");
     Locale.setDefault(new Locale("en", "US"));
     Camera camera = new Camera();                                                     //tworzy kamere bul bul bul
     Renderer renderer  = new MainRenderer(new Vector2(WIDTH, HEIGHT), camera);
