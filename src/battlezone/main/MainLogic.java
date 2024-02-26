@@ -1,7 +1,6 @@
 package battlezone.main;
-import battlezone.entity.Bullet1;
+import battlezone.entity.*;
 import battlezone.entity.Point;
-import battlezone.entity.Tank;
 import engine.Logic;
 import entity.EntityHandler;
 import maths.Vector3;
@@ -9,7 +8,6 @@ import renderer.Camera;
 import renderer.LoadModel;
 import java.awt.*;
 import java.io.File;
-import battlezone.entity.ID;
 
 public class MainLogic implements Logic {
 
@@ -23,6 +21,7 @@ public class MainLogic implements Logic {
         entityHandler = new EntityHandler();
         entityHandler.entities.add(new Bullet1(LoadModel.loadModel(new File(classPath + "/pocisk.model"), Color.black, camera.renderer, camera),new Vector3(0,-0.5,0), entityHandler, camera));
         entityHandler.entities.add(new Tank(LoadModel.loadModel(new File(classPath + "/tank.model"), Color.green, camera.renderer, camera),new Vector3(0,0,25), entityHandler, camera));
+        entityHandler.entities.add(new SuperTank(LoadModel.loadModel(new File(classPath + "/tank.model"), Color.red, camera.renderer, camera),new Vector3(35,0,35), entityHandler, camera));
         entityHandler.entities.add(new Point(LoadModel.loadModel(new File(classPath + "/cube.model"), Color.BLUE , camera.renderer, camera),new Vector3(0,0,0), entityHandler));
         entityHandler.entities.add(new Point(LoadModel.loadModel(new File(classPath + "/cube.model"), Color.BLUE , camera.renderer, camera),new Vector3(0,0,10), entityHandler));
         space = new KeyHandler();
