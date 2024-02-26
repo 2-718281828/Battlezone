@@ -10,13 +10,18 @@ import renderer.Model;
 public class Bullet2 extends Entity {
     public ID id = ID.Bullet2;
     double lifetime = 0;
-    static double speed = 0.01; //ustalamy domyślną prędkość obiektu
+    static double speed = 1; //ustalamy domyślną prędkość obiektu
 	Camera camera;
+
     public Bullet2(Model model, Vector3 position, EntityHandler entityHandler, Vector3 velocity, Camera camera) {
         super(model, position, entityHandler);
 	this.velocity = velocity;
 	this.camera = camera;
-	model.rotate(1, camera.rotation.x);
+        Vector3 dst = new Vector3(camera.position);
+        dst.subtract(position);
+        velocity.x = (dst.x/dst.magnitude())*speed;
+        velocity.z = (dst.z/dst.magnitude())*speed;
+        model.rotate(1, -Math.atan2(dst.z, dst.x)+0.5*Math.PI);
     }
 
     public void logic() {
