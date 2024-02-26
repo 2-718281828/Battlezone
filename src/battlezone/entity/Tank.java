@@ -4,22 +4,22 @@ import battlezone.main.*;
 import entity.Entity;
 import entity.EntityHandler;
 import maths.Vector3;
-import util.Console;
+
 import java.io.*;
 import java.awt.*;
 import renderer.*;
 
 import java.util.Random;
 
-public class Enemy2 extends Entity {
-    public ID id = ID.Enemy2;
+public class Tank extends Entity {
+    public ID id = ID.Tank;
     double t = 0;
     Camera camera;
     double speed = 0.03; //ustalamy domyślną prędkość obiektu
     double alfa = 0; // kąt pod jakim poruszał się obiekt 
     double beta = alfa; //kąt pod jakim porusza się obiekt
 	String classPath = null;
-    public Enemy2(Model model, Vector3 position, EntityHandler entityHandler, Camera camera) {
+    public Tank(Model model, Vector3 position, EntityHandler entityHandler, Camera camera) {
         super(model, position, entityHandler);
         velocity = new Vector3(0, 0, 0);
         model.rotate(1, -alfa);
@@ -59,7 +59,7 @@ public class Enemy2 extends Entity {
 		if (fireTime >= 120) {
 			fireTime = 0;
 			Model modelP = LoadModel.loadModel(new File(classPath + "/pocisk.model"), Color.red, camera.renderer, camera);
-			Pocisk2 p = new Pocisk2(modelP, new Vector3(position), entityHandler, new Vector3(Pocisk2.speed*(dst.x/dst.magnitude()), 0, Pocisk2.speed*(dst.z/dst.magnitude())), camera);
+			Bullet2 p = new Bullet2(modelP, new Vector3(position), entityHandler, new Vector3(Bullet2.speed*(dst.x/dst.magnitude()), 0, Bullet2.speed*(dst.z/dst.magnitude())), camera);
 			entityHandler.entities.add(p);
 			modelP.init(((MainRenderer)camera.renderer).triangles);
 		}
