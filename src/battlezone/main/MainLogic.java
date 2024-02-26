@@ -24,7 +24,7 @@ public class MainLogic implements Logic {
     int spawnedTanks = 0;         //działające czołgi
     int spawnedSTanks = 0;
     int maxspawnedTanks = 3;          //maksymalna ilość działających czołgów
-    int maxspawnedSTanks = 2;
+    int maxspawnedSTanks = 1;        //liczba ujemna sprawi że super czołgi będą sie spawnić potem
     long tankTime = 600 + random.nextLong(600);                   //czas od ostatniego spawnu
     long sTankTime = 1200 + random.nextLong(600);
 
@@ -33,7 +33,6 @@ public class MainLogic implements Logic {
     public MainLogic(Camera camera){
         this.camera = camera;
         entityHandler = new EntityHandler();
-        entityHandler.entities.add(new SuperTank(LoadModel.loadModel(new File(classPath + "/tank.model"), Color.red, camera.renderer, camera),new Vector3(35,0,35), entityHandler, camera));
         space = new KeyHandler();
         camera.renderer.addKeyListener(space);
         for (int i = 0; i < entityHandler.entities.size(); i++) {
@@ -42,9 +41,13 @@ public class MainLogic implements Logic {
     }
     boolean reload = false;
     public void update() {
-        tankTime--;
-        sTankTime--;
-        gameTimer++;
+        if (maxspawnedTanks > spawnedTanks) {
+            tankTime--;
+        }
+        if (maxspawnedSTanks> spawnedSTanks) {
+            sTankTime--;
+        }
+        gameTimer--;
         camera.update(); // aktualizacja kamery
         entityHandler.logic(); // logika wszystkich obiektow
         if (reload)
@@ -67,12 +70,21 @@ public class MainLogic implements Logic {
             spawnedTanks++;
         }
         if (maxspawnedSTanks>spawnedSTanks&&sTankTime<=0){
-            SuperTank superTank = new SuperTank(LoadModel.loadModel(new File(classPath + "/tank.model"), Color.green, camera.renderer, camera), new Vector3(random.nextInt(60)-30,0, random.nextInt(60)-30), entityHandler, camera);//model, położenie, entityHandler
+            SuperTank superTank = new SuperTank(LoadModel.loadModel(new File(classPath + "/tank.model"), Color.orange, camera.renderer, camera), new Vector3(random.nextInt(60)-30,0, random.nextInt(60)-30), entityHandler, camera);//model, położenie, entityHandler
             entityHandler.entities.add(superTank);
             superTank.model.init(((MainRenderer)camera.renderer).triangles);
             tankTime = sTankWait + random.nextLong(600);
             spawnedSTanks++;
         }
 
+
+        //instrukcje warunkujące przebieg gry
+        if (gameTimer<=0){
+            maxspawnedTanks++;
+            maxspawnedSTanks+=2;
+            gameTimer = 60*30+60*random.nextInt(30);
+            System.out.println("Max tanks: "+spawnedTanks);
+            System.out.println("Max super tanks: "+spawnedSTanks);
+        }
     }
 }
