@@ -6,6 +6,8 @@ import entity.EntityHandler;
 import maths.Vector3;
 import renderer.Camera;
 import renderer.LoadModel;
+import util.Console;
+
 import java.awt.*;
 import java.io.File;
 import java.util.Random;
@@ -25,7 +27,7 @@ public class MainLogic implements Logic {
     int spawnedSTanks = 0;
     int maxspawnedTanks = 3;          //maksymalna ilość działających czołgów
     int maxspawnedSTanks = 1;        //liczba ujemna sprawi że super czołgi będą sie spawnić potem
-    long tankTime = 600 + random.nextLong(600);                   //czas od ostatniego spawnu
+    long tankTime = 0;                   //czas od ostatniego spawnu
     long sTankTime = 1200 + random.nextLong(600);
 
 
@@ -68,13 +70,15 @@ public class MainLogic implements Logic {
             tank.model.init(((MainRenderer)camera.renderer).triangles);
             tankTime = tankWait + random.nextLong(600);
             spawnedTanks++;
+            Console.log("Spawn tank");
         }
         if (maxspawnedSTanks>spawnedSTanks&&sTankTime<=0){
             SuperTank superTank = new SuperTank(LoadModel.loadModel(new File(classPath + "/tank.model"), Color.orange, camera.renderer, camera), new Vector3(random.nextInt(60)-30,0, random.nextInt(60)-30), entityHandler, camera);//model, położenie, entityHandler
             entityHandler.entities.add(superTank);
             superTank.model.init(((MainRenderer)camera.renderer).triangles);
-            tankTime = sTankWait + random.nextLong(600);
+            sTankTime = sTankWait + random.nextLong(600);
             spawnedSTanks++;
+            Console.log("Spawn super tank");
         }
 
 
