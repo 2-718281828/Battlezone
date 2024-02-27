@@ -25,10 +25,11 @@ public class MainLogic implements Logic {
     int sTankWait = 1800;
     int spawnedTanks = 0;         //działające czołgi
     int spawnedSTanks = 0;
-    int maxspawnedTanks = 3;          //maksymalna ilość działających czołgów
-    int maxspawnedSTanks = 1;        //liczba ujemna sprawi że super czołgi będą sie spawnić potem
+    int maxspawnedTanks = 1;          //maksymalna ilość działających czołgów
+    int maxspawnedSTanks = 0;        //liczba ujemna sprawi że super czołgi będą sie spawnić potem
     long tankTime = 600;                   //losowy czas spawnu
     long sTankTime = 1200 + random.nextLong(600);
+    int gameType = 0;
 
 
 
@@ -83,12 +84,33 @@ public class MainLogic implements Logic {
 
 
         //instrukcje warunkujące przebieg gry
-        if (gameTimer<=0){
+        if (gameTimer<=0&&gameType<9){
+            gameType++;
+            gameTimer = 60*30+60*random.nextInt(30);
+        }
+        else if (gameType>=9&&gameTimer<=0){
             maxspawnedTanks++;
             maxspawnedSTanks+=2;
             gameTimer = 60*30+60*random.nextInt(30);
-            System.out.println("Max tanks: "+spawnedTanks);
-            System.out.println("Max super tanks: "+spawnedSTanks);
+        }
+        switch (gameType){
+            case 1:
+                maxspawnedTanks = 3;
+                gameType++;
+                break;
+            case 3:
+                maxspawnedTanks=5;
+                break;
+            case 5:
+                maxspawnedTanks=4;
+                maxspawnedSTanks=1;
+                break;
+            case 7:
+                maxspawnedTanks=2;
+                maxspawnedSTanks = 3;
+                break;
+            default:
+
         }
     }
 }
