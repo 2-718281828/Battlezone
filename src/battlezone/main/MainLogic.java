@@ -23,10 +23,10 @@ public class MainLogic implements Logic {
     long gameTimer = 0;
     int tankWait = 600;                       //minimalny czas od ostatniego spawnu
     int sTankWait = 1800;
-    int spawnedTanks = 0;         //działające czołgi
-    int spawnedSTanks = 0;
+    public static int spawnedTanks = 0;         //działające czołgi
+    public static int spawnedSTanks = 0;
     int maxspawnedTanks = 1;          //maksymalna ilość działających czołgów
-    int maxspawnedSTanks = 0;        //liczba ujemna sprawi że super czołgi będą sie spawnić potem
+    int maxspawnedSTanks = 1;        //liczba ujemna sprawi że super czołgi będą sie spawnić potem
     long tankTime = 600;                   //losowy czas spawnu
     long sTankTime = 1200 + random.nextLong(600);
     int gameType = 0;
@@ -44,6 +44,11 @@ public class MainLogic implements Logic {
         UFO ufo = new UFO(LoadModel.loadModel(new File(classPath + "/ufo.model"), Color.white, camera.renderer, camera),new Vector3(camera.position.x, camera.position.y-0.5, camera.position.z), entityHandler, camera);
         entityHandler.entities.add(ufo);
         ufo.model.init(((MainRenderer)camera.renderer).triangles);
+        SuperTank superTank = new SuperTank(LoadModel.loadModel(new File(classPath + "/SuperTank.model"), Color.orange, camera.renderer, camera), new Vector3(random.nextInt(60)-30,0, random.nextInt(60)-30), entityHandler, camera);//model, położenie, entityHandler
+        entityHandler.entities.add(superTank);
+        superTank.model.init(((MainRenderer)camera.renderer).triangles);
+        sTankTime = sTankWait + random.nextLong(600);
+        spawnedSTanks++;
     }
     boolean reload = false;
     public void update() {
