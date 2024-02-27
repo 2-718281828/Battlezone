@@ -34,5 +34,6 @@ public class Bullet1 extends Entity {
         }
         position.add(velocity);
         model.move(velocity);
+	updateHitbox();
     }
 }
