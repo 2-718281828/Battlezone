@@ -21,9 +21,9 @@ public class Piece extends Entity {
     Random random = new Random();
     double beta = random.nextDouble(2*Math.PI);
     public void logic() {
-        velocity.x=Math.sin(beta)*speed;
-        velocity.z=Math.cos(beta)*speed;
-        velocity.y=Math.sin(alfa)*speed;
+        velocity.x=Math.sin(beta)*0.05;
+        velocity.z=Math.cos(beta)*0.05;
+        velocity.y=Math.sin(alfa)*0.05;
         position.add(velocity);
         model.move(velocity);
         alfa -= 0.25*Math.PI/120;
