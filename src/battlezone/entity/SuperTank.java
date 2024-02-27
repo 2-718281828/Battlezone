@@ -91,6 +91,14 @@ public class SuperTank extends Entity {
                         util.Console.log("Kolizja z pociskiem");
                         entityHandler.entities.get(i).model.remove(((MainRenderer) camera.renderer).triangles);
                         entityHandler.entities.remove(entityHandler.entities.get(i));
+
+                        for (int a = 3; a>0;a--) {
+                            Model modelP = LoadModel.loadModel(new File(classPath + "/piece.model"), Color.orange, camera.renderer, camera);
+                            Piece p = new Piece(modelP, new Vector3(position), entityHandler, camera);
+                            entityHandler.entities.add(p);
+                            modelP.init(((MainRenderer) camera.renderer).triangles);
+                        }
+
                         model.remove(((MainRenderer) camera.renderer).triangles);
                         entityHandler.entities.remove(this);
                         MainLogic.spawnedSTanks--;
