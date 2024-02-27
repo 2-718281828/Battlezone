@@ -77,7 +77,7 @@ public class MainLogic implements Logic {
             Console.log("Spawn tank");
         }
         if (maxspawnedSTanks>spawnedSTanks&&sTankTime<=0){
-            SuperTank superTank = new SuperTank(LoadModel.loadModel(new File(classPath + "/tank.model"), Color.orange, camera.renderer, camera), new Vector3(random.nextInt(60)-30,0, random.nextInt(60)-30), entityHandler, camera);//model, położenie, entityHandler
+            SuperTank superTank = new SuperTank(LoadModel.loadModel(new File(classPath + "/SuperTank.model"), Color.orange, camera.renderer, camera), new Vector3(random.nextInt(60)-30,0, random.nextInt(60)-30), entityHandler, camera);//model, położenie, entityHandler
             entityHandler.entities.add(superTank);
             superTank.model.init(((MainRenderer)camera.renderer).triangles);
             sTankTime = sTankWait + random.nextLong(600);

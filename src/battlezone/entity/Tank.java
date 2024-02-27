@@ -16,8 +16,8 @@ public class Tank extends Entity {
     double t = 0;
     Camera camera;
     double speed = 0.03; //ustalamy domyślną prędkość obiektu
-    double alfa = 0; // kąt pod jakim poruszał się obiekt 
-    double beta = alfa; //kąt pod jakim porusza się obiekt
+    double alfa = 0; // kąt pod jakim poruszał się obiekt
+	double beta = alfa; //kąt pod jakim porusza się obiekt
 	String classPath = null;
     public Tank(Model model, Vector3 position, EntityHandler entityHandler, Camera camera) {
         super(model, position, entityHandler);
@@ -88,11 +88,12 @@ public class Tank extends Entity {
            if (collision(entityHandler.entities.get(i).hitbox)) {
             if(entityHandler.entities.get(i).getClass()==Bullet1.class) {
                util.Console.log("Kolizja z pociskiem");
-	       entityHandler.entities.get(i).model.remove(renderer.triangles);
+	       entityHandler.entities.get(i).model.remove(((MainRenderer)camera.renderer).triangles);
 	       entityHandler.entities.remove(entityHandler.entities.get(i));
             }
 	   }
          }
        }
+
     }
 }
