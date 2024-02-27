@@ -40,7 +40,10 @@ public class MainLogic implements Logic {
         camera.renderer.addKeyListener(space);
         for (int i = 0; i < entityHandler.entities.size(); i++) {
             entityHandler.entities.get(i).model.init(((MainRenderer)camera.renderer).triangles);
-        } // inicjalizacja wszystkich modelow
+        }// inicjalizacja wszystkich modelow
+        UFO ufo = new UFO(LoadModel.loadModel(new File(classPath + "/ufo.model"), Color.white, camera.renderer, camera),new Vector3(camera.position.x, camera.position.y-0.5, camera.position.z), entityHandler, camera);
+        entityHandler.entities.add(ufo);
+        ufo.model.init(((MainRenderer)camera.renderer).triangles);
     }
     boolean reload = false;
     public void update() {
