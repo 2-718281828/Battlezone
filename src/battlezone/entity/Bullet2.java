@@ -24,6 +24,7 @@ public class Bullet2 extends Entity {
         model.rotate(1, -Math.atan2(dst.z, dst.x)+0.5*Math.PI);
     }
 
+    Vector3 dst = new Vector3(0, 0, 0);
     public void logic() {
         lifetime++;
         if (lifetime >= 60 * 5) {
@@ -33,5 +34,11 @@ public class Bullet2 extends Entity {
         }
         position.add(velocity);
         model.move(velocity);
+	dst.x = position.x;
+	dst.z = position.z;
+	dst.subtract(camera.position);
+	if (dst.magnitude() < 0.5) { // gdy jest zbyt blisko gracza, rejestrujemy to jako kolizję
+		lifetime += 60*5; // dodajemy czas tak aby przy następnym update został usunięty	
+	}
     }
 }
