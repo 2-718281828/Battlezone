@@ -1,5 +1,6 @@
 package battlezone.entity;
 
+import battlezone.main.MainLogic;
 import battlezone.main.MainRenderer;
 import entity.Entity;
 import entity.EntityHandler;
@@ -26,6 +27,7 @@ public class SuperTank extends Entity {
         super(model, position, entityHandler);
         velocity = new Vector3(0, 0, 0);
         model.rotate(1, -alfa);
+        model.rotate(0, -0.5 * Math.PI);
         model.scale(0.2);
         this.camera = camera;
         classPath = ((MainRenderer) camera.renderer).getClass().getResource("").getPath();
@@ -81,6 +83,20 @@ public class SuperTank extends Entity {
             Bullet2 p = new Bullet2(modelP, new Vector3(position), entityHandler, new Vector3(Bullet2.speed * (dst.x / dst.magnitude()), 0, Bullet2.speed * (dst.z / dst.magnitude())), camera);
             entityHandler.entities.add(p);
             modelP.init(((MainRenderer) camera.renderer).triangles);
+        }
+        for (int i = 0; i < entityHandler.entities.size(); i++) {
+            if (entityHandler.entities.get(i) != this) {
+                if (collision(entityHandler.entities.get(i).hitbox)) {
+                    if (entityHandler.entities.get(i).getClass() == Bullet1.class) {
+                        util.Console.log("Kolizja z pociskiem");
+                        entityHandler.entities.get(i).model.remove(((MainRenderer) camera.renderer).triangles);
+                        entityHandler.entities.remove(entityHandler.entities.get(i));
+                        model.remove(((MainRenderer) camera.renderer).triangles);
+                        entityHandler.entities.remove(this);
+                        MainLogic.spawnedSTanks--;
+                    }
+                }
+            }
         }
     }
 }
