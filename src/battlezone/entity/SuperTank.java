@@ -32,7 +32,8 @@ public class SuperTank extends Entity {
         this.camera = camera;
         classPath = ((MainRenderer) camera.renderer).getClass().getResource("").getPath();
         if (Math.abs(position.x-camera.position.x)<10 || Math.abs(position.z-camera.position.z)<10){
-            model.move(new Vector3(position.x+10, 0, position.z+10));
+            model.remove(((MainRenderer)camera.renderer).triangles);
+            entityHandler.entities.remove(this);
         }
     }
 
