@@ -1,5 +1,6 @@
 package battlezone.entity;
 
+import battlezone.main.MainLogic;
 import battlezone.main.MainRenderer;
 import battlezone.main.Sounds;
 import entity.Entity;
@@ -42,5 +43,9 @@ public class Bullet2 extends Entity {
 	if (dst.magnitude() < 0.5) { // gdy jest zbyt blisko gracza, rejestrujemy to jako kolizję
 		lifetime += 60*5; // dodajemy czas tak aby przy następnym update został usunięty	
 	}
+    if (Math.abs(position.x-camera.position.x)<0.5&&Math.abs(position.z-camera.position.z)<0.5){
+        MainLogic.health--;
+        System.out.println(MainLogic.health);
+    }
     }
 }

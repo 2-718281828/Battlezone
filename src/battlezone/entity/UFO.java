@@ -9,6 +9,7 @@ import maths.Vector3;
 import renderer.Camera;
 import renderer.LoadModel;
 import renderer.Model;
+import util.Console;
 
 import java.awt.*;
 import java.io.File;
@@ -56,6 +57,8 @@ public class UFO extends Entity {
                         Sounds.play("/ufo.wav");
                         model.remove(((MainRenderer)camera.renderer).triangles);
                         entityHandler.entities.remove(this);
+                        MainLogic.score+=500;
+                        Console.log(MainLogic.score);
                     }
                 }
             }

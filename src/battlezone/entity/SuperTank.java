@@ -106,7 +106,9 @@ public class SuperTank extends Entity {
                         Sounds.play("/boom.wav");
                         model.remove(((MainRenderer) camera.renderer).triangles);
                         entityHandler.entities.remove(this);
+                        MainLogic.score+=250;
                         MainLogic.spawnedSTanks--;
+                        Console.log(MainLogic.score);
                     }
                 }
             }

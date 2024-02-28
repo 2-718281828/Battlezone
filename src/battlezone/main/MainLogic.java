@@ -13,7 +13,8 @@ import java.io.File;
 import java.util.Random;
 
 public class MainLogic implements Logic {
-
+    public static long score = 0;
+    public static int health = 5;
     public Camera camera;
     double timer=0;
     public EntityHandler entityHandler;
