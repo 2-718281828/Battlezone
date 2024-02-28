@@ -14,11 +14,12 @@ public class Piece extends Entity {
     double alfa = 0.25*Math.PI;
     double speed = 0.075;
     Camera camera;
+    Random random = new Random();
     public Piece(Model model, Vector3 vector3, EntityHandler entityHandler, Camera camera) {
         super(model, vector3, entityHandler);
         this.camera=camera;
+        model.scale(0.5+ random.nextDouble(0.5));
     }
-    Random random = new Random();
     double beta = random.nextDouble(2*Math.PI);
     public void logic() {
         velocity.x=Math.sin(beta)*0.1;

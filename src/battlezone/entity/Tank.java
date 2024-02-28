@@ -26,6 +26,9 @@ public class Tank extends Entity {
         model.scale(0.2);
         this.camera = camera;
 	classPath = ((MainRenderer)camera.renderer).getClass().getResource("").getPath();
+	if (Math.abs(position.x-camera.position.x)<10 || Math.abs(position.z-camera.position.z)<10){
+		model.move(new Vector3(position.x+10, 0, position.z+10));
+	}
     }
 
     Random random = new Random();
@@ -90,7 +93,7 @@ public class Tank extends Entity {
                util.Console.log("Kolizja z pociskiem");
 	       entityHandler.entities.get(i).model.remove(((MainRenderer)camera.renderer).triangles);
 	       entityHandler.entities.remove(entityHandler.entities.get(i));
-		   for (int a = 3; a>0;a--) {
+		   for (int a = 5; a>0;a--) {
 			   Model modelP = LoadModel.loadModel(new File(classPath + "/piece.model"), Color.green, camera.renderer, camera);
 			   Piece p = new Piece(modelP, new Vector3(position), entityHandler, camera);
 			   entityHandler.entities.add(p);
