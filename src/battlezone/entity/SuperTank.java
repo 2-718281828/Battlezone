@@ -2,6 +2,7 @@ package battlezone.entity;
 
 import battlezone.main.MainLogic;
 import battlezone.main.MainRenderer;
+import battlezone.main.Sounds;
 import entity.Entity;
 import entity.EntityHandler;
 import maths.Vector3;
@@ -102,7 +103,7 @@ public class SuperTank extends Entity {
                             entityHandler.entities.add(p);
                             modelP.init(((MainRenderer) camera.renderer).triangles);
                         }
-
+                        Sounds.play("/boom.wav");
                         model.remove(((MainRenderer) camera.renderer).triangles);
                         entityHandler.entities.remove(this);
                         MainLogic.spawnedSTanks--;

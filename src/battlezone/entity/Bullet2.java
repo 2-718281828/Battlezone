@@ -1,6 +1,7 @@
 package battlezone.entity;
 
 import battlezone.main.MainRenderer;
+import battlezone.main.Sounds;
 import entity.Entity;
 import entity.EntityHandler;
 import maths.Vector3;
@@ -22,6 +23,7 @@ public class Bullet2 extends Entity {
         velocity.x = (dst.x/dst.magnitude())*speed;
         velocity.z = (dst.z/dst.magnitude())*speed;
         model.rotate(1, -Math.atan2(dst.z, dst.x)+0.5*Math.PI);
+        Sounds.play("/fire.wav");
     }
 
     Vector3 dst = new Vector3(0, 0, 0);

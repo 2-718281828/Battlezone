@@ -100,7 +100,7 @@ public class Tank extends Entity {
 			   entityHandler.entities.add(p);
 			   modelP.init(((MainRenderer) camera.renderer).triangles);
 		   }
-		   Sounds.playSound("/boom.mav");
+		   Sounds.play("/boom.wav");
 		   model.remove(((MainRenderer)camera.renderer).triangles);
 		   entityHandler.entities.remove(this);
 		   MainLogic.spawnedTanks--;

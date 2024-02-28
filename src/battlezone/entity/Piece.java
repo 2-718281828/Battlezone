@@ -30,7 +30,7 @@ public class Piece extends Entity {
         position.add(velocity);
         model.move(velocity);
         alfa -= 0.5*Math.PI/120;
-        if (alfa<=-0.25*Math.PI){
+        if (alfa<=-0.3*Math.PI){
             model.remove(((MainRenderer) camera.renderer).triangles);
             entityHandler.entities.remove(this);
         }
