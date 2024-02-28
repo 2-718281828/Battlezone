@@ -8,6 +8,7 @@ import maths.Vector3;
 import java.io.*;
 import java.awt.*;
 import renderer.*;
+import util.Console;
 
 import java.util.Random;
 
@@ -103,7 +104,9 @@ public class Tank extends Entity {
 		   Sounds.play("/boom.wav");
 		   model.remove(((MainRenderer)camera.renderer).triangles);
 		   entityHandler.entities.remove(this);
+		   MainLogic.score+=100;
 		   MainLogic.spawnedTanks--;
+		   Console.log(MainLogic.score);
             }
 	   }
          }
