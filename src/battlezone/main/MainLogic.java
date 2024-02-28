@@ -50,7 +50,7 @@ public class MainLogic implements Logic {
             tree.model.init(((MainRenderer)camera.renderer).triangles);
         }
         for (int x = 15; x>0; x--){
-            Rock rock = new Rock(LoadModel.loadModel(new File(classPath + "/rock.model"), Color.green, camera.renderer, camera),new Vector3(-50+ random.nextInt(100), -1.5, -50+ random.nextInt(100)), entityHandler);
+            Rock rock = new Rock(LoadModel.loadModel(new File(classPath + "/rock.model"), Color.green, camera.renderer, camera),new Vector3(-50+ random.nextInt(100), -1, -50+ random.nextInt(100)), entityHandler);
             entityHandler.entities.add(rock);
             rock.model.init(((MainRenderer)camera.renderer).triangles);
         }
@@ -74,6 +74,7 @@ public class MainLogic implements Logic {
         }
         if (space.spacePressed && !reload){
             reload = true;
+            Sounds.play("/fire.wav");
             Bullet1 bullet1 = new Bullet1(LoadModel.loadModel(new File(classPath + "/pocisk.model"), Color.red, camera.renderer, camera),new Vector3(camera.position.x, camera.position.y-0.5, camera.position.z), entityHandler, camera);//model, położenie, entityHandler
             entityHandler.entities.add(bullet1);
             bullet1.model.init(((MainRenderer)camera.renderer).triangles);
