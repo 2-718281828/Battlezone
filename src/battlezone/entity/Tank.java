@@ -35,7 +35,7 @@ public class Tank extends Entity {
     Random random = new Random();
     double time = 0;
     double fireTime = 0;
-
+	Sounds sound=new Sounds();
     public void logic() {
         time++;
 	// przemiesczanie
@@ -100,6 +100,7 @@ public class Tank extends Entity {
 			   entityHandler.entities.add(p);
 			   modelP.init(((MainRenderer) camera.renderer).triangles);
 		   }
+		   Sounds.playSound("/boom.mav");
 		   model.remove(((MainRenderer)camera.renderer).triangles);
 		   entityHandler.entities.remove(this);
 		   MainLogic.spawnedTanks--;
