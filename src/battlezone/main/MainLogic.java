@@ -26,7 +26,7 @@ public class MainLogic implements Logic {
     public static int spawnedTanks = 0;         //działające czołgi
     public static int spawnedSTanks = 0;
     int maxspawnedTanks = 1;          //maksymalna ilość działających czołgów
-    int maxspawnedSTanks = 1;        //liczba ujemna sprawi że super czołgi będą sie spawnić potem
+    int maxspawnedSTanks = 0;        //liczba ujemna sprawi że super czołgi będą sie spawnić potem
     long tankTime = 600;                   //losowy czas spawnu
     long sTankTime = 1200 + random.nextLong(600);
     int gameType = 0;
@@ -44,11 +44,6 @@ public class MainLogic implements Logic {
         UFO ufo = new UFO(LoadModel.loadModel(new File(classPath + "/ufo.model"), Color.white, camera.renderer, camera),new Vector3(camera.position.x, camera.position.y-0.5, camera.position.z), entityHandler, camera);
         entityHandler.entities.add(ufo);
         ufo.model.init(((MainRenderer)camera.renderer).triangles);
-        SuperTank superTank = new SuperTank(LoadModel.loadModel(new File(classPath + "/SuperTank.model"), Color.orange, camera.renderer, camera), new Vector3(random.nextInt(60)-30,0, random.nextInt(60)-30), entityHandler, camera);//model, położenie, entityHandler
-        entityHandler.entities.add(superTank);
-        superTank.model.init(((MainRenderer)camera.renderer).triangles);
-        sTankTime = sTankWait + random.nextLong(600);
-        spawnedSTanks++;
     }
     boolean reload = false;
     public void update() {
@@ -98,6 +93,12 @@ public class MainLogic implements Logic {
         }
         else if (gameType>=9&&gameTimer<=0){
             maxspawnedTanks++;
+            if (sTankWait>0){
+                sTankWait-=100;
+            }
+            if (tankWait>0){
+                tankWait-=100;
+            }
             maxspawnedSTanks+=2;
             gameTimer = 60*30+60*random.nextInt(30);
         }
@@ -108,6 +109,7 @@ public class MainLogic implements Logic {
                 break;
             case 3:
                 maxspawnedTanks=5;
+                tankWait=400;
                 break;
             case 5:
                 maxspawnedTanks=4;
@@ -116,6 +118,8 @@ public class MainLogic implements Logic {
             case 7:
                 maxspawnedTanks=2;
                 maxspawnedSTanks = 3;
+                sTankWait=600;
+                tankWait=200;
                 break;
             default:
 
