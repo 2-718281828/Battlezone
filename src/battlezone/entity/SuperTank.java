@@ -43,6 +43,7 @@ public class SuperTank extends Entity {
     double fireTime = 0;
 
     public void logic() {
+        updateHitbox();
         time++;
         fireTime++;
         // przemiesczanie

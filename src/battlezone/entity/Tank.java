@@ -38,6 +38,7 @@ public class Tank extends Entity {
     double fireTime = 0;
 	Sounds sound=new Sounds();
     public void logic() {
+		updateHitbox();
         time++;
 	// przemiesczanie
         position.add(velocity);
