@@ -44,6 +44,11 @@ public class MainLogic implements Logic {
         UFO ufo = new UFO(LoadModel.loadModel(new File(classPath + "/ufo.model"), Color.white, camera.renderer, camera),new Vector3(camera.position.x, camera.position.y-0.5, camera.position.z), entityHandler, camera);
         entityHandler.entities.add(ufo);
         ufo.model.init(((MainRenderer)camera.renderer).triangles);
+        for (int x = 15; x>0; x--){
+            Tree tree = new Tree(LoadModel.loadModel(new File(classPath + "/tree.model"), Color.green, camera.renderer, camera),new Vector3(-50+ random.nextInt(100), 0, -50+ random.nextInt(100)), entityHandler);
+            entityHandler.entities.add(tree);
+            tree.model.init(((MainRenderer)camera.renderer).triangles);
+        }
     }
     boolean reload = false;
     public void update() {

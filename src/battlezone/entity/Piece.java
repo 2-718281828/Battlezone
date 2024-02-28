@@ -12,7 +12,6 @@ import java.util.Random;
 public class Piece extends Entity {
     public ID id = ID.Piece;
     double alfa = 0.25*Math.PI;
-    double speed = 0.075;
     Camera camera;
     Random random = new Random();
     public Piece(Model model, Vector3 vector3, EntityHandler entityHandler, Camera camera) {
