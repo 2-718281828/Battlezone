@@ -1,5 +1,6 @@
 package battlezone.entity;
 
+import battlezone.main.MainLogic;
 import battlezone.main.MainRenderer;
 import entity.Entity;
 import entity.EntityHandler;
@@ -43,6 +44,26 @@ public class UFO extends Entity {
 	    velocity.x = Math.cos(alfa) * speed;
 	    velocity.z = Math.sin(alfa) * speed;
 	    // ustalamy prędkośc obiektów na podstawie kątów
+        for (int i = 0; i < entityHandler.entities.size(); i++) {
+            if (entityHandler.entities.get(i) != this) {
+                if (collision(entityHandler.entities.get(i).hitbox)) {
+                    if(entityHandler.entities.get(i).getClass()==Bullet1.class) {
+                        util.Console.log("Kolizja z pociskiem");
+                        entityHandler.entities.get(i).model.remove(((MainRenderer)camera.renderer).triangles);
+                        entityHandler.entities.remove(entityHandler.entities.get(i));
+//                        for (int a = 5; a>0;a--) {
+//                            Model modelP = LoadModel.loadModel(new File(classPath + "/piece.model"), Color.green, camera.renderer, camera);
+//                            Piece p = new Piece(modelP, new Vector3(position), entityHandler, camera);
+//                            entityHandler.entities.add(p);
+//                            modelP.init(((MainRenderer) camera.renderer).triangles);
+//                        }
+                        model.remove(((MainRenderer)camera.renderer).triangles);
+                        entityHandler.entities.remove(this);
+                        MainLogic.spawnedTanks--;
+                    }
+                }
+            }
+        }
         }
     }
 
