@@ -49,6 +49,11 @@ public class MainLogic implements Logic {
             entityHandler.entities.add(tree);
             tree.model.init(((MainRenderer)camera.renderer).triangles);
         }
+        for (int x = 15; x>0; x--){
+            Rock rock = new Rock(LoadModel.loadModel(new File(classPath + "/rock.model"), Color.green, camera.renderer, camera),new Vector3(-50+ random.nextInt(100), -1.5, -50+ random.nextInt(100)), entityHandler);
+            entityHandler.entities.add(rock);
+            rock.model.init(((MainRenderer)camera.renderer).triangles);
+        }
     }
     boolean reload = false;
     public void update() {
