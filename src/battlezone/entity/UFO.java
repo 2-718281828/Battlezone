@@ -16,7 +16,7 @@ import java.util.Random;
 public class UFO extends Entity {
     public ID id = ID.UFO;
     Camera camera;
-    double speed = 0.03; //ustalamy domyślną prędkość obiektu
+    double speed = 0.003; //ustalamy domyślną prędkość obiektu
     double alfa = 0; // kąt pod jakim poruszał się obiekt
 	String classPath = null;
     public UFO(Model model, Vector3 position, EntityHandler entityHandler, Camera camera) {
@@ -44,6 +44,8 @@ public class UFO extends Entity {
 	    velocity.x = Math.cos(alfa) * speed;
 	    velocity.z = Math.sin(alfa) * speed;
 	    // ustalamy prędkośc obiektów na podstawie kątów
+
+
         for (int i = 0; i < entityHandler.entities.size(); i++) {
             if (entityHandler.entities.get(i) != this) {
                 if (collision(entityHandler.entities.get(i).hitbox)) {
@@ -51,15 +53,8 @@ public class UFO extends Entity {
                         util.Console.log("Kolizja z pociskiem");
                         entityHandler.entities.get(i).model.remove(((MainRenderer)camera.renderer).triangles);
                         entityHandler.entities.remove(entityHandler.entities.get(i));
-//                        for (int a = 5; a>0;a--) {
-//                            Model modelP = LoadModel.loadModel(new File(classPath + "/piece.model"), Color.green, camera.renderer, camera);
-//                            Piece p = new Piece(modelP, new Vector3(position), entityHandler, camera);
-//                            entityHandler.entities.add(p);
-//                            modelP.init(((MainRenderer) camera.renderer).triangles);
-//                        }
                         model.remove(((MainRenderer)camera.renderer).triangles);
                         entityHandler.entities.remove(this);
-                        MainLogic.spawnedTanks--;
                     }
                 }
             }
