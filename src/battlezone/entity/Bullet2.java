@@ -45,6 +45,7 @@ public class Bullet2 extends Entity {
 	}
     if (Math.abs(position.x-camera.position.x)<0.5&&Math.abs(position.z-camera.position.z)<0.5){
         MainLogic.health--;
+        Sounds.play("/health.wav");
         System.out.println(MainLogic.health);
     }
     }
