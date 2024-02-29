@@ -15,7 +15,7 @@ public class MainRenderer extends Renderer {
     public MainRenderer(Vector2 vector2, Camera camera) {
         super(vector2, camera);
         triangles = new Triangles();
-	hud = new HUD();
+	hud = new HUD(this, camera);
     }
 
     public void render(Graphics2D graphics2D) {

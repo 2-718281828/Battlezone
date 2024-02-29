@@ -24,6 +24,7 @@ public class Main {
     camera.enableRotationPitch = false; // wylaczenie rotacji w pionie
 	camera.enableUpDown = false; // wylaczenie poruszania sie gora/dol
     MainLogic mainLogic = new MainLogic(camera);                                       //wspomaga kamere
+renderer.entityHandler = mainLogic.entityHandler;
     Engine engine = new Engine(renderer, mainLogic);                                   //obsługuje silnik
     engine.start();
   }
