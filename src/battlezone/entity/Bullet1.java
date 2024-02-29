@@ -10,7 +10,6 @@ import renderer.Model;
 public class Bullet1 extends Entity {
     public ID id = ID.Bullet1;
     double lifetime = 0;
-    boolean life = false;
     double speed = 1; //ustalamy domyślną prędkość obiektu
     Camera camera;
     public Bullet1(Model model, Vector3 position, EntityHandler entityHandler, Camera camera) {
@@ -26,11 +25,7 @@ public class Bullet1 extends Entity {
         if (lifetime >= 60 * 5) {
             entityHandler.entities.remove(this);
             model.remove(((MainRenderer) camera.renderer).triangles);
-            life = false;
             lifetime = 0;
-        }
-        else{
-            life= true;
         }
         position.add(velocity);
         model.move(velocity);
