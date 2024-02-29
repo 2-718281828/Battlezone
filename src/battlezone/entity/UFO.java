@@ -26,6 +26,7 @@ public class UFO extends Entity {
         velocity = new Vector3(0, 0, 0);
         model.rotate(0, -0.5*Math.PI);
         this.camera = camera;
+        model.scale(1.2);
 	classPath = ((MainRenderer)camera.renderer).getClass().getResource("").getPath();
     model.move(new Vector3(position.x, 0.5, position.z));
     }
