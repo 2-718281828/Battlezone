@@ -79,7 +79,7 @@ public class Tank extends Entity {
 
 	}
         else {
-            if(time / 60 >= 5) {
+            if (time / 60 >= 5) {
 		alfa = beta; // rejestrujemy poprzednią wartość kąta 
                 time = 0; // resetujemy czas
 		beta += Math.PI/4-random.nextDouble(Math.PI/2); // dodajemy do bety losowy kąt między -pi/4 a pi/4
