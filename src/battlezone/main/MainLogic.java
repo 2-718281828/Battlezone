@@ -70,6 +70,7 @@ public class MainLogic implements Logic {
             UFO ufo = new UFO(LoadModel.loadModel(new File(classPath + "/ufo.model"), Color.white, camera.renderer, camera),new Vector3(-50+ random.nextInt(100), -0.51, -50+random.nextInt(100)), entityHandler, camera);
             entityHandler.entities.add(ufo);
             ufo.model.init(((MainRenderer)camera.renderer).triangles);
+            ufoTimer = 3000 + random.nextInt(600);
         }
         camera.update(); // aktualizacja kamery
         entityHandler.logic(); // logika wszystkich obiektow
