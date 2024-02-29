@@ -59,6 +59,7 @@ public class MainLogic implements Logic {
     }
     boolean reload = false;
     public void update() {
+        ((MainRenderer) camera.renderer).hud.update();
         if (maxspawnedTanks > spawnedTanks) {
             tankTime--;
         }
