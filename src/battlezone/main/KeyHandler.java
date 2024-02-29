@@ -1,7 +1,4 @@
 package battlezone.main;
-
-import battlezone.entity.Pocisk;
-
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 public class KeyHandler implements KeyListener {

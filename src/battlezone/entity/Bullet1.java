@@ -7,12 +7,12 @@ import maths.Vector3;
 import renderer.Camera;
 import renderer.Model;
 
-public class Pocisk extends Entity {
-    public ID id = ID.Pocisk;
+public class Bullet1 extends Entity {
+    public ID id = ID.Bullet1;
     double lifetime = 0;
     double speed = 1; //ustalamy domyślną prędkość obiektu
     Camera camera;
-    public Pocisk(Model model, Vector3 position, EntityHandler entityHandler, Camera camera) {
+    public Bullet1(Model model, Vector3 position, EntityHandler entityHandler, Camera camera) {
         super(model, position, entityHandler);
         //model.rotate(1, 0.5*Math.PI);
         this.camera = camera;
@@ -29,5 +29,6 @@ public class Pocisk extends Entity {
         }
         position.add(velocity);
         model.move(velocity);
+	updateHitbox();
     }
 }
