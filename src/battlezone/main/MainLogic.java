@@ -32,6 +32,7 @@ public class MainLogic implements Logic {
     long tankTime = 600;                   //losowy czas spawnu
     long sTankTime = 1200 + random.nextLong(600);
     int gameType = 0;
+    long ufoTimer = 3000+random.nextLong(600);
 
 
 
@@ -43,16 +44,14 @@ public class MainLogic implements Logic {
         for (int i = 0; i < entityHandler.entities.size(); i++) {
             entityHandler.entities.get(i).model.init(((MainRenderer)camera.renderer).triangles);
         }// inicjalizacja wszystkich modelow
-        UFO ufo = new UFO(LoadModel.loadModel(new File(classPath + "/ufo.model"), Color.white, camera.renderer, camera),new Vector3(camera.position.x, -0.51, camera.position.z), entityHandler, camera);
-        entityHandler.entities.add(ufo);
-        ufo.model.init(((MainRenderer)camera.renderer).triangles);
+
         for (int x = 15; x>0; x--){
-            Tree tree = new Tree(LoadModel.loadModel(new File(classPath + "/tree.model"), Color.green, camera.renderer, camera),new Vector3(-50+ random.nextInt(100), 0, -50+ random.nextInt(100)), entityHandler);
+            Tree tree = new Tree(LoadModel.loadModel(new File(classPath + "/tree.model"), Color.green, camera.renderer, camera),new Vector3(-50+ random.nextInt(100), 0, -50+ random.nextInt(100)), entityHandler, camera);
             entityHandler.entities.add(tree);
             tree.model.init(((MainRenderer)camera.renderer).triangles);
         }
         for (int x = 15; x>0; x--){
-            Rock rock = new Rock(LoadModel.loadModel(new File(classPath + "/rock.model"), Color.green, camera.renderer, camera),new Vector3(-50+ random.nextInt(100), -1.5, -50+ random.nextInt(100)), entityHandler);
+            Rock rock = new Rock(LoadModel.loadModel(new File(classPath + "/rock.model"), Color.green, camera.renderer, camera),new Vector3(-50+ random.nextInt(100), -1.5, -50+ random.nextInt(100)), entityHandler, camera);
             entityHandler.entities.add(rock);
             rock.model.init(((MainRenderer)camera.renderer).triangles);
         }
@@ -66,6 +65,12 @@ public class MainLogic implements Logic {
             sTankTime--;
         }
         gameTimer--;
+        ufoTimer--;
+        if (ufoTimer<=0){
+            UFO ufo = new UFO(LoadModel.loadModel(new File(classPath + "/ufo.model"), Color.white, camera.renderer, camera),new Vector3(-50+ random.nextInt(100), -0.51, -50+random.nextInt(100)), entityHandler, camera);
+            entityHandler.entities.add(ufo);
+            ufo.model.init(((MainRenderer)camera.renderer).triangles);
+        }
         camera.update(); // aktualizacja kamery
         entityHandler.logic(); // logika wszystkich obiektow
         //{
