@@ -21,7 +21,7 @@ public class MainLogic implements Logic {
     String classPath=getClass().getResource("").getPath();
     KeyHandler space;
     Random random = new Random();
-    int magazine = 5;    //ilość dostępnej w magazynku amunicji
+    public static int magazine = 5;    //ilość dostępnej w magazynku amunicji
     long gameTimer = 0;
     int tankWait = 600;                       //minimalny czas od ostatniego spawnu
     int sTankWait = 1800;
