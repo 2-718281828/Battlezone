@@ -40,7 +40,7 @@ public class Tree extends Entity {
                         util.Console.log("Kolizja z pociskiem");
                         entityHandler.entities.get(i).model.remove(((MainRenderer)camera.renderer).triangles);
                         entityHandler.entities.remove(entityHandler.entities.get(i));
-                        Sounds.play("/boom.wav");
+                        Sounds.play("/tree.wav");
                         model.remove(((MainRenderer)camera.renderer).triangles);
                         entityHandler.entities.remove(this);
                     }
