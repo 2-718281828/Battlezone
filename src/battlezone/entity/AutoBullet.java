@@ -20,12 +20,15 @@ public class AutoBullet extends Entity {
     public AutoBullet(Model model, Vector3 vector3, EntityHandler entityHandler, Camera camera) {
         super(model, vector3, entityHandler);
         this.camera = camera;
+        model.rotate(1, Math.PI*0.5);
     }
 
     double beta;
-    double speed = 0.1;
+    double speed = 0.2;
+    long timer=0;
 
     public void logic() {
+        timer++;
         position.add(velocity);
         model.move(velocity);
         // odległość do kamery
@@ -40,8 +43,10 @@ public class AutoBullet extends Entity {
         if (Math.abs(position.x - camera.position.x) < 0.5 && Math.abs(position.z - camera.position.z) < 0.5) {
             MainLogic.health-=3;
             Sounds.play("/health.wav");
+            model.remove(((MainRenderer)camera.renderer).triangles);
+            entityHandler.entities.remove(this);
         }
-        Sounds.play("/autobulletsound.wav");
+
 
         for (int i = 0; i < entityHandler.entities.size(); i++) {
             if (entityHandler.entities.get(i) != this) {
@@ -58,5 +63,9 @@ public class AutoBullet extends Entity {
                 }
             }
         }
+    if (timer>60){
+        timer = 0;
+        Sounds.play("/autobulletsound.wav");
+    }
     }
 }

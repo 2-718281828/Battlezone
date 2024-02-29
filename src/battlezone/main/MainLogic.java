@@ -1,6 +1,7 @@
 package battlezone.main;
 import battlezone.entity.*;
 import battlezone.entity.Point;
+import engine.Engine;
 import engine.Logic;
 import entity.EntityHandler;
 import maths.Vector3;
@@ -126,12 +127,9 @@ public class MainLogic implements Logic {
             }
             maxspawnedSTanks+=2;
             gameTimer = 60*30+60*random.nextInt(30);
-            AutoBullet auto= new AutoBullet(LoadModel.loadModel(new File(classPath + "/autobullet.model"), Color.red, camera.renderer, camera), new Vector3(camera.position.x + random.nextInt(150)-75,0, camera.position.z+random.nextInt(150)-75), entityHandler, camera);//model, położenie, entityHandler
+            AutoBullet auto= new AutoBullet(LoadModel.loadModel(new File(classPath + "/autobullet.model"), Color.red, camera.renderer, camera), new Vector3(camera.position.x + random.nextInt(150),0, camera.position.z+random.nextInt(150)), entityHandler, camera);//model, położenie, entityHandler
             entityHandler.entities.add(auto);
             auto.model.init(((MainRenderer)camera.renderer).triangles);
-            if (random.nextBoolean()){
-
-            }
         }
         switch (gameType){
             case 1:
@@ -155,5 +153,9 @@ public class MainLogic implements Logic {
             default:
 
         }
+    if (health<=0){
+        Engine engine = null;
+        engine.stop();
+    }
     }
 }
