@@ -51,7 +51,7 @@ public class UFO extends Entity {
         for (int i = 0; i < entityHandler.entities.size(); i++) {
             if (entityHandler.entities.get(i) != this) {
                 if (collision(entityHandler.entities.get(i).hitbox)) {
-                    if(entityHandler.entities.get(i).getClass()==UFO.class) {
+                    if(entityHandler.entities.get(i).getClass()==Bullet1.class) {
                         util.Console.log("Kolizja z pociskiem");
                         entityHandler.entities.get(i).model.remove(((MainRenderer)camera.renderer).triangles);
                         entityHandler.entities.remove(entityHandler.entities.get(i));
